@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "78F9A106-73D2-4AD8-93CA-7E9BFB464B0F",
+      "name" : "ASNA",
+      "options" : {
+        "testExecutionOrdering" : "random",
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "addressSanitizer" : {
+      "enabled" : true
+    },
+    "testExecutionOrdering" : "random",
+    "testTimeoutsEnabled" : true,
+    "undefinedBehaviorSanitizerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:DemoApp.xcodeproj",
+        "identifier" : "90743C971EC3955500D220C0",
+        "name" : "DemoAppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

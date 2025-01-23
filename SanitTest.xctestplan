@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "81BBA1F5-64B7-45CC-B94D-279572EF8184",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "ASABaseTest",
+        "BaseTest",
+        "FourTest",
+        "SuperTest",
+        "ThreeTest",
+        "TwoTest"
+      ],
+      "target" : {
+        "containerPath" : "container:DemoApp.xcodeproj",
+        "identifier" : "90743C971EC3955500D220C0",
+        "name" : "DemoAppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
