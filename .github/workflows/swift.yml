@@ -19,9 +19,32 @@ jobs:
        - run: xchtmlreport TestResult.xcresult
 
        - name: Deploy to GitHub Pages
-         uses: peaceiris/actions-gh-pages@v3.9.2
+         uses: peaceiris/actions-gh-pages@v4
          with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
            publish_dir: ./
            destination_dir: ${{ github.run_id }}
            exclude_assets: '.github,XCTestReport.xcodeproj,XCTestReport,XCTestReportUITests'
+   allure:
+      name: Allure Report
+      runs-on: macos-12
+      timeout-minutes: 20
+      steps:
+        - uses: actions/checkout@v3.1.0
+
+        - run: |
+            brew install allure
+            DOWNLOAD_URL="https://github.com/eroshenkoam/xcresults/releases/download/1.13.1/xcresults"
+            curl -sL "${DOWNLOAD_URL}" -o ./xcresults
+            chmod +x ./xcresults
+
+        - run: xcodebuild test -scheme XCTestReport -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -resultBundlePath TestResult | xcpretty
+
+        - run: |
+            ./xcresults export TestResult.xcresult allure-results
+            allure generate allure-results
+
+        - uses: actions/upload-artifact@v3
+          with:
+            name: Allure Report
+            path: allure-report/
