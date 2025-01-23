@@ -23,6 +23,7 @@ jobs:
          with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
            publish_dir: ./
+           run: echo "${{ github.run_id }}"
            destination_dir: ${{ github.run_id }}
            exclude_assets: '.github,XCTestReport.xcodeproj,XCTestReport,XCTestReportUITests'
    allure:
